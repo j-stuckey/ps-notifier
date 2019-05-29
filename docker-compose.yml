@@ -1,0 +1,14 @@
+version: '3.4'
+services:
+  notifier:
+    build:
+      context: .
+      target: base
+    container_name: notifier_ui
+    image: notifier_ui
+    command: npm start
+    ports:
+    - '5000:3000'
+    volumes:
+    - ${PWD}:/usr/src/app
+    - /usr/src/app/node_modules
