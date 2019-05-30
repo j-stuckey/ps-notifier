@@ -13,6 +13,7 @@ class App extends React.Component {
             modalIsOpen: false,
             gistData: null,
             files: [
+				// Example data
                 {
                     filename: 'Release 1',
                     content:
@@ -28,25 +29,19 @@ class App extends React.Component {
     }
 
     async componentDidMount() {
-        const gistId = 'c0e89effa749de86473b43845918b130';
+		const gistId = 'c0e89effa749de86473b43845918b130';
+		
+		// Should fetch the data needed from API
 
         // This uses v3 of the Github API
         // grabs gist from github for changelog
         // const response = await axios.get(`${GITHUB_BASE_URL}/gists/${gistId}`);
 
+		// 
+
         // this.setState({
         //     gistData: response.data,
         //     files: Object.values(response.data.files)
-        // });
-    }
-
-    componentDidUpdate() {
-        const { gistData } = this.state;
-
-        // Here I am trying to get the info that
-        // will display how long ago the changes were
-        // const history = gistData.history.map(item => {
-        //     return new Date(item.committed_at);
         // });
     }
 
@@ -58,7 +53,7 @@ class App extends React.Component {
         const { files, modalIsOpen } = this.state;
 
         return (
-            <div className={modalIsOpen ? "Darkened" :"App"}>
+            <div className={modalIsOpen ? 'Darkened' : 'App'}>
                 <header>
                     <button
                         className="ProfileButton"
@@ -73,7 +68,12 @@ class App extends React.Component {
                 </header>
                 {modalIsOpen && files.length > 0 && (
                     <div className="ChangelogModal">
-						<button onClick={this.handleClick} className="CloseModalButton">X</button>
+                        <button
+                            onClick={this.handleClick}
+                            className="CloseModalButton"
+                        >
+                            X
+                        </button>
                         <ChangelogFile
                             content={files[0].content}
                             name={files[0].filename}
@@ -95,6 +95,7 @@ const ChangelogFile = props => {
             <h1>{props.name}</h1>
 
             <p>{props.content}</p>
+            <div className="SeparatorLine" />
         </div>
     );
 };
