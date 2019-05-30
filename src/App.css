@@ -1,33 +1,60 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+.Darkened { 
+	text-align: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  /* background: rgb(190, 190, 190); */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ChangelogModal {
+	width: 70%;
+	height: 70vh;
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.308);
+	background: white;
+}
+
+.ChangelogItem {
+	position: relative;
+	padding: 20px;
+	top: 50px;
+	width: 80%;
+	margin: auto;
+}
+
+.CloseModalButton {
+	position: relative;
+	top: 20px;
+	right: -325px;
+	border: none;
+	background: transparent;
+}
+
+.ProfileButton {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	border: none;
+	background: transparent;
+}
+
+.ProfileIcon {
+	width: 60px;
+	height: 60px;
+	border-radius: 25%;
+}
+
+.SeparatorLine {
+	border: 1px solid gray;
+	width: 100%;
 }
