@@ -18,39 +18,50 @@ class App extends React.Component {
         // This uses v3 of the Github API
         // grabs gist from github for changelog
         axios.get(`${GITHUB_BASE_URL}/gists/${gistId}`).then(res => {
-            this.setState({ gistData: res.data });
+            this.setState({
+                gistData: res.data,
+                files: Object.values(res.data.files)
+            });
         });
     }
 
     componentDidUpdate() {
         const { gistData } = this.state;
         console.log('Updating...');
-		console.log(gistData);
-		
-		const history = gistData.history.map(item => {
-			return new Date(item.committed_at);
-		});
-		console.log(history);
+        console.log(gistData);
 
-        // fetch each of the files and content
-        const files = Object.values(gistData.files);
-        console.log(files);
+        // Here I am trying to get the info that
+        // will display how long ago the changes were
+        const history = gistData.history.map(item => {
+            return new Date(item.committed_at);
+        });
+        // console.log(history);
     }
 
     render() {
-        const { data } = this.state;
+        const { files } = this.state;
+
         return (
             <div className="App">
-                <header>Hello world</header>
-
-                <ChangelogFile data={null} />
+                {files.length > 0 && (
+                    <ChangelogFile
+                        content={files[0].content}
+                        name={files[0].filename}
+                    />
+                )}
             </div>
         );
     }
 }
 
 const ChangelogFile = props => {
-    return <h1>{props.description || 'default'}</h1>;
+    return (
+        <div className="ChangelogContainer">
+            <h1>{props.name}</h1>
+
+            <p>{props.content}</p>
+        </div>
+    );
 };
 
 export default App;
