@@ -33,9 +33,10 @@
 }
 
 .CloseModalButton {
-	position: relative;
-	top: 20px;
-	right: -325px;
+	position: fixed;
+	top: 18%;
+	right: 17%;
+	/* right: -325px; */
 	border: none;
 	background: transparent;
 }
