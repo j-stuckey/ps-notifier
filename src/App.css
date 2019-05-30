@@ -31,6 +31,14 @@
 	margin: auto;
 }
 
+.CloseModalButton {
+	position: relative;
+	top: 20px;
+	right: -325px;
+	border: none;
+	background: transparent;
+}
+
 .ProfileButton {
 	position: fixed;
 	top: 20px;

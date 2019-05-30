@@ -73,6 +73,7 @@ class App extends React.Component {
                 </header>
                 {modalIsOpen && files.length > 0 && (
                     <div className="ChangelogModal">
+						<button onClick={this.handleClick} className="CloseModalButton">X</button>
                         <ChangelogFile
                             content={files[0].content}
                             name={files[0].filename}
