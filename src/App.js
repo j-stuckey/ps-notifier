@@ -10,8 +10,20 @@ class App extends React.Component {
         super(props);
 
         this.state = {
+            modalIsOpen: false,
             gistData: null,
-            files: []
+            files: [
+                {
+                    filename: 'Release 1',
+                    content:
+                        'We added this amazing new feature. It lets you do amazing things and so much more. Try it out today to see for yourself.'
+                },
+                {
+                    filename: 'Release 2',
+                    content:
+                        'We added this amazing new feature. It lets you do amazing things and so much more. Try it out today to see for yourself.'
+                }
+            ]
         };
     }
 
@@ -20,12 +32,12 @@ class App extends React.Component {
 
         // This uses v3 of the Github API
         // grabs gist from github for changelog
-        const response = await axios.get(`${GITHUB_BASE_URL}/gists/${gistId}`);
+        // const response = await axios.get(`${GITHUB_BASE_URL}/gists/${gistId}`);
 
-        this.setState({
-            gistData: response.data,
-            files: Object.values(response.data.files)
-        });
+        // this.setState({
+        //     gistData: response.data,
+        //     files: Object.values(response.data.files)
+        // });
     }
 
     componentDidUpdate() {
@@ -33,18 +45,25 @@ class App extends React.Component {
 
         // Here I am trying to get the info that
         // will display how long ago the changes were
-        const history = gistData.history.map(item => {
-            return new Date(item.committed_at);
-        });
+        // const history = gistData.history.map(item => {
+        //     return new Date(item.committed_at);
+        // });
     }
 
+    handleClick = () => {
+        this.setState({ modalIsOpen: !this.state.modalIsOpen });
+    };
+
     render() {
-        const { files } = this.state;
+        const { files, modalIsOpen } = this.state;
 
         return (
-            <div className="App">
+            <div className={modalIsOpen ? "Darkened" :"App"}>
                 <header>
-                    <button className="ProfileButton">
+                    <button
+                        className="ProfileButton"
+                        onClick={this.handleClick}
+                    >
                         <img
                             src={icon}
                             alt="profile icon"
@@ -52,11 +71,17 @@ class App extends React.Component {
                         />
                     </button>
                 </header>
-                {files.length > 0 && (
-                    <ChangelogFile
-                        content={files[0].content}
-                        name={files[0].filename}
-                    />
+                {modalIsOpen && files.length > 0 && (
+                    <div className="ChangelogModal">
+                        <ChangelogFile
+                            content={files[0].content}
+                            name={files[0].filename}
+                        />
+                        <ChangelogFile
+                            content={files[1].content}
+                            name={files[1].filename}
+                        />
+                    </div>
                 )}
             </div>
         );
@@ -65,7 +90,7 @@ class App extends React.Component {
 
 const ChangelogFile = props => {
     return (
-        <div className="ChangelogContainer">
+        <div className="ChangelogItem">
             <h1>{props.name}</h1>
 
             <p>{props.content}</p>

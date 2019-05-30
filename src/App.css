@@ -3,14 +3,32 @@
   display: flex;
   flex-flow: column;
   align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-.ChangelogContainer {
-	display: flex;
-	flex-flow: column;
-	justify-content: center;
-	align-items: center;
-	width: 60%;	
+.Darkened { 
+	text-align: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  /* background: rgb(190, 190, 190); */
+}
+
+.ChangelogModal {
+	width: 70%;
+	height: 70vh;
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.308);
+	background: white;
+}
+
+.ChangelogItem {
+	position: relative;
+	top: 50px;
+	width: 80%;
+	margin: auto;
 }
 
 .ProfileButton {
