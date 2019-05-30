@@ -8,7 +8,10 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { gistData: null, files: [] };
+        this.state = {
+            gistData: null,
+            files: []
+        };
     }
 
     componentDidMount() {
