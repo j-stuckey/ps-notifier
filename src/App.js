@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import icon from './assets/user.png';
 import axios from 'axios';
 
 import { GITHUB_BASE_URL } from './config';
@@ -18,18 +19,17 @@ class App extends React.Component {
         const gistId = 'c0e89effa749de86473b43845918b130';
 
         // This uses v3 of the Github API
-		// grabs gist from github for changelog
-		const response = await axios.get(`${GITHUB_BASE_URL}/gists/${gistId}`);
+        // grabs gist from github for changelog
+        const response = await axios.get(`${GITHUB_BASE_URL}/gists/${gistId}`);
 
-		this.setState({ 
-			gistData: response.data,
-			files: Object.values(response.data.files)
-		});
+        this.setState({
+            gistData: response.data,
+            files: Object.values(response.data.files)
+        });
     }
 
     componentDidUpdate() {
         const { gistData } = this.state;
-        
 
         // Here I am trying to get the info that
         // will display how long ago the changes were
@@ -43,6 +43,15 @@ class App extends React.Component {
 
         return (
             <div className="App">
+                <header>
+                    <button className="ProfileButton">
+                        <img
+                            src={icon}
+                            alt="profile icon"
+                            className="ProfileIcon"
+                        />
+                    </button>
+                </header>
                 {files.length > 0 && (
                     <ChangelogFile
                         content={files[0].content}
